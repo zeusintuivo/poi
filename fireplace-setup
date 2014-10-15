@@ -1,5 +1,14 @@
 #!/bin/bash 
-git clone https://github.com/zeusintuivo/fireplace.git;
+if [ -z "$1" ]; then 
+	echo
+	echo " Please clone the repo online first from: https://github.com/mozilla/fireplace.git"
+	echo " then call this again proving your own git username "
+	echo "  Ex:   fireplace-setup joahna-guru-git-user-name"
+	echo 
+	exit 0
+    # Variable is empty
+fi
+git clone https://github.com/$1/fireplace.git;
 cd fireplace;
 nvm use v0.10.32;
 echo "Notice I tried this code with node 11 and it didnot work - October 13th, 2014"

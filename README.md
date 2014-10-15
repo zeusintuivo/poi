@@ -54,6 +54,101 @@ if you want you want to delete it:
 rm -rf ~/bin2
 ~~~~
 
+Usage
+=====
+
+### kuma
+
+#### Pre-requisites 
+1. First browse Bugzilla for Bugs to fix for MDN (kuma), and pick a bug number. 
+2. Set up your working environment 
+3. I am guessing you cloned the code
+4. Once you have a bug# and you have access to IRC #mdndev from irc.mozilla.org
+5. You are ready to contribute.
+
+#### Contributing
+
+> Use kuma-new-issue 888888 to start like this 
+
+~~~
+kuma-new-issue 1068486
+~~~
+
+make sure you place your own bug#
+
+> Now, work on the bug
+
+> Use kuma-run to start the vargrant server like this: 
+
+~~~
+kuma-run
+~~~
+
+Once you are logged in the server run the foreman start:
+
+~~~
+foreman start
+~~~
+
+Once you have fixed, coded, and drank some coffe and ate some candies. 
+You are ready to push !
+
+> Use kuma-commit to push changes like this:
+
+~~~
+kuma-commit "I fixed some changes message here"
+~~~
+
+Remember to place your own message.
+
+Once you want to stop your development, do want to "pause" your vagrant
+and maybe you are the kind that forgets that this vargrant is running.
+I don't have to explain that you press Ctrl+C to stop foreman start
+and that you type exit to exit the vagrant-virtualbox machine. 
+
+But if you forget vagrant suspend, you can always type "k" -> tab
+then type "s" -> and press "enter."
+
+~~~
+kuma-suspend
+~~~
+
+Easy cheese!
+
+
+### fireplace 
+
+#### Pre-requisites 
+1. Fork project online from https://github.com/mozilla/fireplace.git
+2. Have your terminal open and be in the place (location, directory, folder), where you want to clone the project. 
+
+> Use fireplace-setup to clone and setup you the whole environment like this:
+
+~~~
+fireplace-setup johana-git-guru-user-name-here
+~~~
+
+> Use fireplace-compile to run the compilation procedures
+
+~~~
+fireplace-compile
+~~~
+
+> Use firepace-settings to cat (see, observe, printout) the settings file
+
+~~~
+fireplace-settings
+~~~
+
+> Use the fireplace-test to run the testing procedures
+
+~~~ 
+fireplace-test
+~~~
+
+
+
+
 Stage
 =====
 20141010 - Creation. This is my first try. I guess you can call it *alpha for now
