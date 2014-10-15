@@ -101,13 +101,25 @@ kuma-commit "I fixed some changes message here"
 
 Remember to place your own message.
 
+> Use kuma-amend to commit to the branch again, making amends to something
+> that is almost fixed, but the team might want a change on something. 
+> I left the comment as optional in case one is to be in a hurry, and I 
+> re-use the last comment from the last commit.  
+
+~~~
+kuma-ammend "I patched my recent patch, replaced a typo kind of message"
+~~~
+
+
+> Use kuma-suspend to pause vagrant 
+
 Once you want to stop your development, do want to "pause" your vagrant
 and maybe you are the kind that forgets that this vargrant is running.
 I don't have to explain that you press Ctrl+C to stop foreman start
 and that you type exit to exit the vagrant-virtualbox machine. 
 
 But if you forget vagrant suspend, you can always type "k" -> tab
-then type "s" -> and press "enter."
+then type "s" -> and press "enter" like this:
 
 ~~~
 kuma-suspend

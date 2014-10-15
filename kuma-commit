@@ -1,3 +1,13 @@
+#!/bin/bash 
+if [ -z "$1" ]; then 
+	echo
+	echo " Please provide commit msg for git"
+	echo "  Ex: "
+	echo '     kuma-commit "message goes here for you short comming description"'
+	echo   
+	exit 0
+    # Variable is empty
+fi
 
 #http://stackoverflow.com/questions/2111042/how-to-get-the-name-of-the-current-git-branch-into-a-variable-in-a-shell-script
 BUGNUM=$(git-currentbranch | cut -b11-)
