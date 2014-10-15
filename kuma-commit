@@ -12,16 +12,62 @@ fi
 #http://stackoverflow.com/questions/2111042/how-to-get-the-name-of-the-current-git-branch-into-a-variable-in-a-shell-script
 BUGNUM=$(git-currentbranch | cut -b11-)
 git add . ; git commit -m "fix bug $BUGNUM - $1";
+echo -e "\033[1mFecth\033[0m"
 git fetch mozilla;
-git checkout master; git pull mozilla master;
-git checkout new-issue-$BUGNUM; git rebase master
-git push origin new-issue-$BUGNUM
-git remote -v | grep  origin | ack fetch
-echo -n "          "
-# Red
-echo -en '\E[47;31m'"\033[1mWARNING !! \033[0m"   
-echo " "
-# White on blue background
-echo -e '\E[37;44m'"\033[1mNow go to the github website and ^ and do pull request !\033[0m"
-echo " "
-echo " "
+echo -e "\033[1mSwitch to master\033[0m"
+git checkout master; 
+echo -e "\033[1mGet lastest changes from Mozilla\033[0m"
+git pull mozilla master;
+echo -e "\033[1mBack into my Branch new-issue-$BUGNUM\033[0m"
+git checkout new-issue-$BUGNUM;
+echo -e "\033[1mAdvance the Head in my Repo\033[0m"
+git rebase master
+echo -e "\033[1mFinally! push baby push!\033[0m"
+echo
+git push origin new-issue-$BUGNUM;
+set PUSHO=$?
+set REMOTO=$(git remote -v | grep  origin | ack fetch)
+set WEBSITO=$(git remote -v | grep  origin | ack fetch | cut -b8- | cut -d ' ' -f 1 )
+
+# Success ?
+# http://stackoverflow.com/questions/229551/string-contains-in-bash
+#if [[ $PUSHO == *rejected* ]]; then
+# http://stackoverflow.com/questions/13715261/capture-output-from-git-command
+if [[ $PUSHO -eq 1 ]]; then
+	OPENBR=0;
+	echo ;
+	echo -en '\E[47;31m'"\033[1m  - REJECTED  !! \033[0m";  
+	#echo $PUSHO;
+	echo -en '\E[47;31m'"\033[1m  - - Try again - Trying force push \033[0m";  
+	echo "";
+	#http://stackoverflow.com/questions/5667476/git-non-fast-forward-rejected
+	git push origin +new-issue-$BUGNUM;PUSHO=$?
+	if [[ $PUSHO -eq 1 ]]; then
+		echo -en '\E[47;31m'"\033[1m  - PUSH REJECTED TWICE  !! \033[0m";  
+		#echo $PUSHO;
+		echo -en '\E[47;31m'"\033[1m  - You go figure out \033[0m";  
+		echo ;
+		exit 1;
+	else
+		OPENBR=1;
+	fi
+else
+	OPENBR=1;
+fi 
+
+if [[ $OPENBR -eq 1 ]]; then 
+
+	echo ;
+	echo -en '\E[47;34m'"\033[1m$REMOTO\033[0m"
+	echo -n "          "
+	# Red
+	echo -en '\E[47;31m'"\033[1mWARNING !! \033[0m"   
+	echo " "
+	# White on blue background
+	echo -e '\E[37;44m'"\033[1mNow go to the github website and ^ and do pull request !\033[0m"
+	echo " "
+	echo " "
+
+	echo -e "\033[1mTrying to open firefox to do PR\033[0m"
+	firefox -new-tab $WEBSITO
+fi
