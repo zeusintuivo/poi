@@ -1,0 +1,46 @@
+#!/bin/bash
+# ref https://github.com/zeusintuivo/fireplace
+echo " "
+echo "Prepare for testing!" 
+echo " "
+rm -rf ./src/media/js/settings_local.js
+touch ./src/media/js/settings_local.js
+echo "Creating local settings file configuration"
+
+echo "    define('settings_local', [], function() {" >> ./src/media/js/settings_local.js
+echo "        return {" >> ./src/media/js/settings_local.js
+echo "            api_url: 'https://flue.paas.allizom.org'," >> ./src/media/js/settings_local.js
+echo "            media_url: 'https://flue.paas.allizom.org'" >> ./src/media/js/settings_local.js
+echo "        };" >> ./src/media/js/settings_local.js
+echo "    });" >> ./src/media/js/settings_local.js
+echo " File Created: ./src/media/js/settings_local.js"
+echo "     contents:"
+cat ./src/media/js/settings_local.js
+echo " "
+echo " Testing Starts:"
+echo " "
+casperjs --version
+
+echo " Functional Testing Starts:"
+echo " "
+make test
+echo " "
+echo " "
+echo " Testing ENDED !"
+echo " "
+echo " "
+echo "Prepare settings back the way it was!" 
+echo " "
+rm -rf ./src/media/js/settings_local.js
+touch ./src/media/js/settings_local.js
+echo "Creating local settings file configuration"
+
+echo "    define('settings_local', [], function() {" >> ./src/media/js/settings_local.js
+echo "        return {" >> ./src/media/js/settings_local.js
+echo "            api_url: 'https://marketplace.firefox.com'," >> ./src/media/js/settings_local.js
+echo "            media_url: 'https://marketplace.firefox.com/media'" >> ./src/media/js/settings_local.js
+echo "        };" >> ./src/media/js/settings_local.js
+echo "    });" >> ./src/media/js/settings_local.js
+echo " File Created: ./src/media/js/settings_local.js"
+echo "     contents:"
+cat ./src/media/js/settings_local.js

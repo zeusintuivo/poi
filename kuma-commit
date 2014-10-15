@@ -1,0 +1,17 @@
+
+#http://stackoverflow.com/questions/2111042/how-to-get-the-name-of-the-current-git-branch-into-a-variable-in-a-shell-script
+BUGNUM=$(git-currentbranch | cut -b11-)
+git add . ; git commit -m "fix bug $BUGNUM - $1";
+git fetch mozilla;
+git checkout master; git pull mozilla master;
+git checkout new-issue-$BUGNUM; git rebase master
+git push origin new-issue-$BUGNUM
+git remote -v | grep  origin | ack fetch
+echo -n "          "
+# Red
+echo -en '\E[47;31m'"\033[1mWARNING !! \033[0m"   
+echo " "
+# White on blue background
+echo -e '\E[37;44m'"\033[1mNow go to the github website and ^ and do pull request !\033[0m"
+echo " "
+echo " "

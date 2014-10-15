@@ -1,0 +1,8 @@
+ #!/bin/bash
+ git checkout master; git pull mozilla master;
+ git checkout -b new-issue-$1;
+ git branch;
+ echo ""
+ echo "Now Debug your branch !"
+ echo "When finished type to push: kuma-commit 'msg' "
+ echo " "

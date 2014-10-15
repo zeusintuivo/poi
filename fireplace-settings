@@ -1,0 +1,2 @@
+#!/bin/bash
+cat ./src/media/js/settings_local.js

@@ -1,0 +1,23 @@
+#!/bin/bash 
+git clone https://github.com/zeusintuivo/fireplace.git;
+cd fireplace;
+nvm use v0.10.32;
+echo "Notice I tried this code with node 11 and it didnot work - October 13th, 2014"
+git remote add mozilla https://github.com/mozilla/fireplace.git;
+npm install;
+sudo npm install casperjs;
+sudo npm install -g commonplace;
+commonplace init
+rm -rf ./src/media/js/settings_local.js
+touch ./src/media/js/settings_local.js
+echo "Creating local settings file configuration"
+
+echo "    define('settings_local', [], function() {" >> ./src/media/js/settings_local.js
+echo "        return {" >> ./src/media/js/settings_local.js
+echo "            api_url: 'https://marketplace.firefox.com'," >> ./src/media/js/settings_local.js
+echo "            media_url: 'https://marketplace.firefox.com/media'" >> ./src/media/js/settings_local.js
+echo "        };" >> ./src/media/js/settings_local.js
+echo "    });" >> ./src/media/js/settings_local.js
+echo " File Created: ./src/media/js/settings_local.js"
+echo "     contents:"
+cat ./src/media/js/settings_local.js
