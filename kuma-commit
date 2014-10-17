@@ -25,9 +25,9 @@ git rebase master
 echo -e "\033[1mFinally! push baby push!\033[0m"
 echo
 git push origin new-issue-$BUGNUM;
-set PUSHO=$?
-set REMOTO=$(git remote -v | grep  origin | ack fetch)
-set WEBSITO=$(git remote -v | grep  origin | ack fetch | cut -b8- | cut -d ' ' -f 1 )
+PUSHO=$?
+REMOTO=$(git remote -v | grep  origin | ack fetch)
+WEBSITO=$(git remote -v | grep  origin | ack fetch | cut -b8- | cut -d ' ' -f 1 )
 
 # Success ?
 # http://stackoverflow.com/questions/229551/string-contains-in-bash
