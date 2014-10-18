@@ -1,13 +1,25 @@
 #!/bin/bash 
 #http://stackoverflow.com/questions/2111042/how-to-get-the-name-of-the-current-git-branch-into-a-variable-in-a-shell-script
-BUGNUM=$(git-currentbranch | cut -b11-)
+BUGNUM=$(~/bin/git-currentbranch | cut -b11-)
 echo "Bug #:$BUGNUM"
 if [ -z "$BUGNUM" ]; then 
 	# Bug number missing
 	echo $BUGNUM
 	echo -en '\E[47;31m'"\033[1m Bug number is empty !! \033[0m";  
-	echo  
-	exit 1
+	echo 
+
+	echo " Type the $bug here: [ENTER]:"
+
+    read BUGNUM
+	if [ -z "$BUGNUM" ]; then 
+		# Bug number missing again
+		echo $BUGNUM
+		echo -en '\E[47;31m'"\033[1m Bug number was not provided !! \033[0m";  
+		echo 
+		exit 1
+
+	fi
+
 fi
 if [ -z "$1" ]; then 
 	# Variable missing commit msg
